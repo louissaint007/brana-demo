@@ -1,0 +1,11 @@
+# Asset sources
+
+- Product reference photographs: supplied by the user.
+- `label-prestige-front-round.png`, `label-guinness-front-round.png` and `label-malta-front-round.png`: generated 1:1 square front-label artwork guided by the matching supplied product photos. Each source keeps a circular label face; it is mapped on the curved bottle surface without stretching the artwork into an oval. Fine print must be checked against the photographed package.
+- `label-prestige-back-generated.svg`: independent vector reconstruction from the photographed red rear label. It follows the visible red geometric pattern, 50 ans and Depuis 1976 marks, paragraph, natural ingredient line, readable energy value, producer details, alcohol/size line, and UPC digits. Unreadable nutrition rows are represented as lines without values.
+- `label-guinness-back-generated.svg`: independent vector reconstruction based on the photographed black rear label. It follows the visible product title, French copy, moderation/age marks, bottle and alcohol panel, both readable energy values, producer details, alcohol/size lines, and UPC digits.
+- `label-malta-back-generated.svg`: independent vector reconstruction based on the photographed orange rear label. The top vitamin row begins with A; the bottle icon has no extra slogan; the lower copy, nutrition table, volume and UPC follow text legible in the photo. The smaller certification mark remains simplified.
+- The front label surfaces use a round 1:1 artwork and let the bottle curvature create the natural perspective. The rear SVG labels have the same printed height and a narrower portrait proportion of about 1.5:1. Generated bare-glass renders guide the bottle-shell color and reflections; they are blended broadly across both side joins. Full rear product photos are not mapped onto the model.
+- `assets/studio-backdrop.jpg`: generated for this independent demonstration on 2026-11-11. It contains no product, logo, label or text.
+- Three.js `0.186.1`: package dependency under the MIT License. The build copies its browser modules and license to `dist/vendor/`.
+- The crown caps are modelled metal geometry with a domed top, rolled rim and regular crimping grooves. Color is a visual reference from the renders, not a verified cap color for every SKU.

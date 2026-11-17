@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1000" viewBox="0 0 640 1000">
+<defs>
+ <linearGradient id="pbg" x2="0" y2="1"><stop stop-color="#e44b32"/><stop offset=".52" stop-color="#cf352b"/><stop offset="1" stop-color="#a82527"/></linearGradient>
+ <linearGradient id="pside"><stop stop-color="#601b27" stop-opacity=".45"/><stop offset=".2" stop-color="#601b27" stop-opacity="0"/><stop offset=".8" stop-color="#601b27" stop-opacity="0"/><stop offset="1" stop-color="#601b27" stop-opacity=".34"/></linearGradient>
+ <pattern id="pmotif" width="128" height="138" patternUnits="userSpaceOnUse">
+  <path d="M-12 116L22 78l14 11 25-47 14 7L46 90l-14-10-35 44zm76 49 21-33 16 10 24-47 16 8-30 57-17-10-23 35z" fill="#8d2026" opacity=".43"/>
+  <path d="M8 8l20 20-20 20-20-20zm82 22 18-18 18 18-18 18zm-37 73 17-17 17 17-17 17z" fill="none" stroke="#f17a4b" stroke-width="5" opacity=".32"/>
+  <path d="M35 0l11 23-11 20-11-20zM119 71l10 22-10 20-10-20zM5 91l9 19-9 17-9-17z" fill="#61202a" opacity=".36"/>
+ </pattern>
+ <pattern id="pgrain" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="4" cy="6" r=".8" fill="#ffd492" opacity=".15"/><circle cx="17" cy="15" r=".7" fill="#4b1420" opacity=".2"/></pattern>
+ <clipPath id="pclip"><rect x="8" y="8" width="624" height="984" rx="28"/></clipPath>
+</defs>
+<rect x="8" y="8" width="624" height="984" rx="28" fill="url(#pbg)"/>
+<g clip-path="url(#pclip)"><rect x="8" y="8" width="624" height="984" fill="url(#pmotif)"/><rect x="8" y="8" width="624" height="984" fill="url(#pgrain)"/><rect x="8" y="8" width="624" height="984" fill="url(#pside)"/></g>
+<text x="37" y="164" font-family="Georgia,serif" font-size="142" font-weight="bold" fill="#a5a74b" stroke="#342b20" stroke-width="7">50</text>
+<text x="224" y="107" font-family="Georgia,serif" font-size="41" font-style="italic" font-weight="bold" fill="#f5e6a6">ans</text>
+<rect x="34" y="174" width="263" height="110" rx="49" fill="#111b5b" stroke="#d9bb59" stroke-width="5"/>
+<text x="165" y="244" text-anchor="middle" font-family="Georgia,serif" font-size="43" font-weight="bold" font-style="italic" fill="#fff9e8">Prestige</text>
+<text x="165" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" letter-spacing="3" fill="#e3d7ac">LAGER BEER</text>
+<text x="383" y="194" text-anchor="middle" font-family="Georgia,serif" font-size="33" font-style="italic" fill="#f5d27a">Depuis</text>
+<text x="383" y="239" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="bold" font-style="italic" fill="#f5d27a">1976</text>
+<rect x="476" y="43" width="126" height="222" rx="7" fill="#fff8e9"/>
+<text x="539" y="76" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#283a7d">Alcool et Santé</text>
+<g transform="translate(486 91)" fill="#37499c">
+ <rect x="0" y="0" width="106" height="160" fill="#fff"/>
+ <path d="M3 3h31v31H3zM9 9v19h19V9zM13 13h11v11H13zM72 3h31v31H72zM78 9v19h19V9zM82 13h11v11H82zM3 126h31v31H3zM9 132v19h19v-19zM13 136h11v11H13z"/>
+ <path d="M44 4h7v7h-7zM56 4h5v14h-5zM45 18h8v7h-8zM65 21h7v9h-7zM42 43h10v8H42zM58 42h8v15h-8zM77 43h9v8h-9zM44 61h7v11h-7zM57 65h12v7H57zM76 63h7v12h-7zM90 57h10v8H90zM43 82h9v8h-9zM59 82h7v14h-7zM74 84h12v7H74zM91 79h9v11h-9zM44 104h13v7H44zM61 104h7v12h-7zM78 103h9v11h-9zM93 105h8v7h-8zM43 121h8v9h-8zM59 124h12v7H59zM76 121h8v12h-8zM91 123h10v8H91zM45 140h11v7H45zM64 139h8v12h-8zM81 139h12v7H81z"/>
+</g>
+<g font-family="Georgia,serif" font-size="17" fill="#f3dca0">
+ <text x="37" y="330">Prestige est une bière profondément enracinée dans le</text>
+ <text x="37" y="357">patrimoine haïtien. C’est le témoignage d’une culture riche,</text>
+ <text x="37" y="384">un symbole d’unité et de progrès. Prestige nous offre une</text>
+ <text x="37" y="411">perspective optimiste de la vie, remplie de couleurs, de rires,</text>
+ <text x="37" y="438">et d’énergie positive.</text>
+</g>
+<text x="37" y="479" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#f1d88b">100% ingrédients naturels · Eau, malt d’orge, sucre, houblon</text>
+<text x="37" y="511" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#f1d88b">Déclaration nutritionnelle pour 100 ml</text>
+<text x="37" y="534" font-family="Arial,sans-serif" font-size="13" fill="#f0d88f">Énergie · 187 kJ / 45 kcal</text>
+<g stroke="#f0d88f" stroke-width="1.4" opacity=".52">
+ <path d="M37 548h566M37 562h566M37 576h566"/>
+ <path d="M37 590h566M37 604h566"/>
+</g>
+<g transform="translate(47 621)" fill="none" stroke="#e7ce83" stroke-width="3">
+ <circle cx="35" cy="30" r="26"/><path d="M24 30h22M35 19v22"/>
+ <circle cx="142" cy="30" r="26"/><text x="142" y="37" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#e7ce83" stroke="none">18+</text>
+ <circle cx="249" cy="30" r="26"/><path d="M237 22h24v18h-24zM241 22v-6h16v6"/>
+ <circle cx="356" cy="30" r="26"/><path d="M344 23l24 14m0-14l-24 14"/>
+</g>
+<text x="47" y="703" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#f3d78a">À consommer avec modération</text>
+<text x="47" y="736" font-family="Arial,sans-serif" font-size="13" fill="#f4d88b">Produit et embouteillé en Haïti par</text>
+<text x="47" y="758" font-family="Arial,sans-serif" font-size="13" fill="#f4d88b">Brasserie Nationale d’Haïti S.A. · Port-au-Prince, Haïti</text>
+<text x="47" y="780" font-family="Arial,sans-serif" font-size="13" fill="#f4d88b">www.brana.ht</text>
+<text x="47" y="819" font-family="Arial,sans-serif" font-size="29" font-weight="bold" fill="#f3d78a">ALC. 5,6% VOL · 341 ml</text>
+<g transform="translate(37 846)">
+ <rect x="0" y="0" width="240" height="116" rx="3" fill="#fff8e9"/>
+ <g data-upc="855956000358" transform="translate(13 8)"><rect x="0" y="0" width="210" height="86" fill="#fff8e9"/><g fill="#13245d"><rect x="7.00" y="-7" width="2.05" height="77"/><rect x="11.10" y="-7" width="2.05" height="77"/><rect x="15.20" y="0" width="2.05" height="70"/><rect x="17.25" y="0" width="2.05" height="70"/><rect x="21.35" y="0" width="2.05" height="70"/><rect x="23.40" y="0" width="2.05" height="70"/><rect x="25.45" y="0" width="2.05" height="70"/><rect x="29.55" y="0" width="2.05" height="70"/><rect x="31.60" y="0" width="2.05" height="70"/><rect x="39.80" y="0" width="2.05" height="70"/><rect x="43.90" y="0" width="2.05" height="70"/><rect x="45.95" y="0" width="2.05" height="70"/><rect x="54.15" y="0" width="2.05" height="70"/><rect x="62.35" y="0" width="2.05" height="70"/><rect x="66.45" y="0" width="2.05" height="70"/><rect x="68.50" y="0" width="2.05" height="70"/><rect x="72.60" y="0" width="2.05" height="70"/><rect x="74.65" y="0" width="2.05" height="70"/><rect x="82.85" y="0" width="2.05" height="70"/><rect x="86.95" y="0" width="2.05" height="70"/><rect x="91.05" y="0" width="2.05" height="70"/><rect x="93.10" y="0" width="2.05" height="70"/><rect x="95.15" y="0" width="2.05" height="70"/><rect x="97.20" y="0" width="2.05" height="70"/><rect x="101.30" y="-7" width="2.05" height="77"/><rect x="105.40" y="-7" width="2.05" height="77"/><rect x="109.50" y="0" width="2.05" height="70"/><rect x="111.55" y="0" width="2.05" height="70"/><rect x="113.60" y="0" width="2.05" height="70"/><rect x="119.75" y="0" width="2.05" height="70"/><rect x="123.85" y="0" width="2.05" height="70"/><rect x="125.90" y="0" width="2.05" height="70"/><rect x="127.95" y="0" width="2.05" height="70"/><rect x="134.10" y="0" width="2.05" height="70"/><rect x="138.20" y="0" width="2.05" height="70"/><rect x="140.25" y="0" width="2.05" height="70"/><rect x="142.30" y="0" width="2.05" height="70"/><rect x="148.45" y="0" width="2.05" height="70"/><rect x="152.55" y="0" width="2.05" height="70"/><rect x="162.80" y="0" width="2.05" height="70"/><rect x="166.90" y="0" width="2.05" height="70"/><rect x="173.05" y="0" width="2.05" height="70"/><rect x="175.10" y="0" width="2.05" height="70"/><rect x="177.15" y="0" width="2.05" height="70"/><rect x="181.25" y="0" width="2.05" height="70"/><rect x="187.40" y="0" width="2.05" height="70"/><rect x="195.60" y="-7" width="2.05" height="77"/><rect x="199.70" y="-7" width="2.05" height="77"/></g></g>
+ <text x="120" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#17275f">8 55956 00035 8</text>
+</g>
+<circle cx="541" cy="894" r="48" fill="#fff6e8" stroke="#f0d88f" stroke-width="3"/>
+<text x="541" y="887" text-anchor="middle" font-family="Georgia,serif" font-size="23" font-weight="bold" fill="#263a82">BN</text>
+<text x="541" y="910" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#263a82">BRANA</text>
+</svg>

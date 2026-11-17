@@ -3,3 +3,5 @@ reference-photos.zip
 /IMG_10*.jpg
 /IMG_10*.HEIC
 outputs/
+node_modules/
+.playwright-cli/

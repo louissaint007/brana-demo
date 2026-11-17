@@ -1,165 +1,26 @@
-const PRODUCTS = {
-  prestige: {
-    id: "prestige",
-    number: "01",
-    name: "Prestige",
-    category: "BIÈRE LAGER",
-    description: "Bière lager en bouteille. Les détails ci-dessous sont repris de l’emballage photographié.",
-    image: "assets/prestige-side.jpg",
-    alt: "Photographie de la bouteille Prestige fournie en référence",
-    views: [{ src: "assets/prestige-side.jpg", alt: "Bouteille Prestige photographiée de biais" }, { src: "assets/prestige-label.jpg", alt: "Autre photo de référence de la bouteille Prestige et de son étiquette" }],
-    facts: [["Format visible", "341 ml"], ["Degré indiqué", "5,6 % vol."]],
-    note: "L’étiquette présente aussi la mention « Lager Beer ». Consultez la bouteille pour les informations à jour."
-  },
-  guinness: {
-    id: "guinness",
-    number: "02",
-    name: "Guinness Foreign Extra Stout",
-    category: "STOUT",
-    description: "Bouteille de Foreign Extra Stout. Les mentions lisibles sur l’emballage indiquent 341 ml et 7,5 % vol.",
-    image: "assets/guinness-reference.HEIC",
-    alt: "Photographie de la bouteille Guinness Foreign Extra Stout fournie en référence",
-    views: [{ src: "assets/guinness-reference.HEIC", alt: "Bouteille Guinness Foreign Extra Stout photographiée en référence" }],
-    facts: [["Format visible", "341 ml"], ["Degré indiqué", "7,5 % vol."]],
-    note: "Les mentions sont reprises de la bouteille photographiée; elles peuvent varier selon les formats."
-  },
-  malta: {
-    id: "malta",
-    number: "03",
-    name: "Malta H",
-    category: "BOISSON MALTÉE",
-    description: "Boisson maltée non alcoolisée. L’emballage affiche aussi la mention « avec vitamines ».",
-    image: "assets/malta-front.jpg",
-    alt: "Photographie de la bouteille Malta H, avec les mentions « avec vitamines » et « non-alcoolisée »",
-    views: [{ src: "assets/malta-front.jpg", alt: "Face avant de la bouteille Malta H avec les mentions visibles" }, { src: "assets/malta-back.jpg", alt: "Face arrière de la bouteille Malta H, photographiée en référence" }],
-    facts: [["Format visible", "341 ml"], ["Mention visible", "Non alcoolisée"]],
-    note: "La mention « avec vitamines » apparaît sur l’étiquette fournie. Consultez l’emballage pour les détails."
-  }
+import { createBottleScene } from './scene3d.js';
+
+const PRODUCTS={
+  prestige:{id:'prestige',number:'01',name:'Prestige',category:'BIÈRE LAGER',description:'Bière lager présentée en bouteille. Les informations affichées proviennent de l’emballage photographié.',image:'assets/reference-prestige-render.png',alt:'Bouteille Prestige ambrée avec sa capsule dorée et son étiquette originale.',facts:[['Format','341 ml'],['Alcool','5,6 % vol.']],note:'La face avant porte également la mention « Lager Beer ». Consultez l’emballage pour les informations du produit présenté.',alcoholic:true},
+  guinness:{id:'guinness',number:'02',name:'Guinness Foreign Extra Stout',category:'STOUT',description:'Bouteille de Foreign Extra Stout. Le format et le degré d’alcool sont indiqués sur l’emballage photographié.',image:'assets/reference-guinness-render.png',alt:'Bouteille Guinness Foreign Extra Stout avec capsule dorée et étiquette noire originale.',facts:[['Format','341 ml'],['Alcool','7,5 % vol.']],note:'Ingrédients lisibles sur l’emballage : eau, malt, orge torréfiée, houblon, sucre et petit mil.',alcoholic:true},
+  malta:{id:'malta',number:'03',name:'Malta H',category:'BOISSON MALTÉE',description:'Boisson maltée sans alcool. L’emballage porte les mentions « avec vitamines » et « non alcoolisée ».',image:'assets/reference-malta-render.png',alt:'Bouteille Malta H ambrée avec capsule dorée et étiquette orange originale.',facts:[['Format','341 ml'],['Alcool','Sans alcool']],note:'Ingrédients lisibles sur l’emballage : eau, malt d’orge, sorgho, sucre et caramel.',alcoholic:false}
 };
-
-const state = { active: "prestige", view: 0, paused: false, queuedProduct: null };
-const $ = (id) => document.getElementById(id);
-const photo = $("heroProductImage");
-const fallback = $("imageFallback");
-const choices = Array.from(document.querySelectorAll(".product-choice"));
-
-function setProduct(id) {
-  const item = PRODUCTS[id];
-  if (!item) return;
-  state.active = id;
-  photo.style.opacity = "0";
-  fallback.hidden = true;
-  state.view = 0;
-  const view = item.views ? item.views[0] : { src: item.image, alt: item.alt };
-  photo.src = view.src;
-  photo.alt = view.alt;
-  const viewButton = $("viewToggle");
-  viewButton.disabled = !item.views || item.views.length < 2;
-  viewButton.setAttribute("aria-label", item.views && item.views.length > 1 ? "Afficher une autre photo de " + item.name : "Une seule photo de référence disponible pour " + item.name);
-  $("sceneProductName").textContent = item.name;
-  $("sceneCounter").textContent = item.number + " / 03";
-  $("detailIndex").textContent = item.number + " — 03";
-  $("detailCategory").textContent = item.category;
-  $("detailTitle").textContent = item.name;
-  $("detailDescription").textContent = item.description;
-  $("detailNote").textContent = item.note;
-  const facts = $("productFacts");
-  facts.replaceChildren(...item.facts.map(([label, value]) => {
-    const row = document.createElement("div");
-    row.className = "fact";
-    const title = document.createElement("span");
-    title.textContent = label;
-    const text = document.createElement("strong");
-    text.textContent = value;
-    row.append(title, text);
-    return row;
-  }));
-  choices.forEach((button) => {
-    const active = button.dataset.product === id;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
-  document.querySelectorAll(".scene-indicator b").forEach((dot, index) => {
-    dot.classList.toggle("active", index === Number(item.number) - 1);
-  });
-  $("photoWrap").classList.remove("switching");
-  requestAnimationFrame(() => $("photoWrap").classList.add("switching"));
-}
-
-photo.addEventListener("load", () => {
-  photo.style.opacity = "1";
-  fallback.hidden = true;
-});
-photo.addEventListener("error", () => {
-  photo.style.opacity = "0";
-  fallback.hidden = false;
-});
-
-choices.forEach((button) => button.addEventListener("click", () => {
-  if (button.dataset.product !== "malta" && !sessionStorage.getItem("brana-age-ok")) {
-    state.queuedProduct = button.dataset.product;
-    $("ageGate").classList.remove("hidden");
-    $("ageYes").focus();
-    return;
-  }
-  setProduct(button.dataset.product);
-}));
-
-$("motionToggle").addEventListener("click", () => {
-  state.paused = !state.paused;
-  document.body.classList.toggle("is-paused", state.paused);
-  $("motionToggle").setAttribute("aria-pressed", String(state.paused));
-  $("motionToggle").setAttribute("aria-label", state.paused ? "Reprendre les animations" : "Mettre les animations en pause");
-  $("motionLabel").textContent = state.paused ? "Reprendre" : "Mettre en pause";
-});
-
-const gate = $("ageGate");
-$("ageYes").addEventListener("click", () => {
-  sessionStorage.setItem("brana-age-ok", "yes");
-  gate.classList.add("hidden");
-  const queued = state.queuedProduct;
-  if (queued) { setProduct(queued); state.queuedProduct = null; }
-  else $("products").scrollIntoView({ behavior: "smooth", block: "start" });
-});
-$("ageNo").addEventListener("click", () => {
-  $("ageTitle").textContent = "Accès non disponible";
-  $("ageDescription").textContent = "Les contenus de cette maquette sont réservés aux adultes. Vous pouvez fermer cette fenêtre.";
-  $("ageYes").hidden = true;
-  $("ageNo").textContent = "Accès réservé aux adultes";
-  $("ageNo").disabled = true;
-});
-
-if (sessionStorage.getItem("brana-age-ok")) gate.classList.add("hidden");
-setProduct("prestige");
-
-$("viewToggle").addEventListener("click", () => {
-  const views = PRODUCTS[state.active].views || [];
-  if (views.length < 2) return;
-  state.view = (state.view + 1) % views.length;
-  const view = views[state.view];
-  photo.style.opacity = "0";
-  photo.src = view.src;
-  photo.alt = view.alt;
-  $("viewToggle").setAttribute("aria-label", "Afficher une autre photo de " + PRODUCTS[state.active].name);
-});
-
-// Keep the photo plane readable: only a restrained pointer tilt is used.
-const stage = document.querySelector(".hero-visual");
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-if (stage && !reduceMotion.matches) {
-  stage.addEventListener("pointermove", (event) => {
-    if (state.paused) return;
-    const rect = stage.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - .5;
-    const y = (event.clientY - rect.top) / rect.height - .5;
-    stage.style.setProperty("--pointer-x", (x * 5).toFixed(2) + "deg");
-    stage.style.setProperty("--pointer-y", (y * -4).toFixed(2) + "deg");
-    const frame = stage.querySelector(".photo-frame");
-    frame.style.transform = "rotateY(" + (-4 + x * 7).toFixed(2) + "deg) rotateX(" + (1 + y * -5).toFixed(2) + "deg)";
-  });
-  stage.addEventListener("pointerleave", () => {
-    stage.querySelector(".photo-frame").style.transform = "";
-    stage.style.removeProperty("--pointer-x");
-    stage.style.removeProperty("--pointer-y");
-  });
-}
+const ORDER=['prestige','guinness','malta'];
+const $=id=>document.getElementById(id),canvas=$('bottleScene'),fallback=$('sceneFallback'),photo=$('heroProductImage'),choices=[...document.querySelectorAll('.product-choice')],reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+const ageAccepted=!!sessionStorage.getItem('brana-age-ok');const state={active:'prestige',paused:!ageAccepted||reduce.matches,manualPaused:!ageAccepted,queued:null};
+let scene=null;
+function showPhotoFallback(){if(!fallback||!canvas)return;canvas.hidden=true;fallback.hidden=false;const p=PRODUCTS[state.active];photo.src=p.image;photo.alt=p.alt;}
+function updateMotionControl(){const b=$('motionToggle');if(reduce.matches){b.disabled=true;b.setAttribute('aria-pressed','true');b.setAttribute('aria-label','Animations désactivées selon la préférence du navigateur');$('motionLabel').textContent='Animations réduites';}else{b.disabled=false;b.setAttribute('aria-pressed',String(state.paused));b.setAttribute('aria-label',state.paused?'Reprendre le carrousel':'Mettre le carrousel en pause');$('motionLabel').textContent=state.paused?'Reprendre':'Mettre en pause';}}
+function syncPauseUI(paused){state.paused=paused;document.body.classList.toggle('is-paused',paused);updateMotionControl();}
+function setProduct(id,animate=true){const item=PRODUCTS[id];if(!item)return;state.active=id;if(scene&&animate)scene.select(id,{spin:false});if(!canvas.hidden)fallback.hidden=true;$('sceneProductName').textContent=item.name;$('sceneCounter').textContent=item.number+' sur 03';$('detailIndex').textContent=item.number+' sur 03';$('detailCategory').textContent=item.category;$('detailTitle').textContent=item.name;$('detailDescription').textContent=item.description;$('detailNote').textContent=item.note;$('bottleScene').setAttribute('aria-label','Carrousel 3D de '+item.name+'. Survolez la scène pour suspendre. Touchez pour arrêter ou reprendre; utilisez les flèches pour changer de produit.');const renderFacts=target=>{target.replaceChildren(...item.facts.map(([label,value])=>{const row=document.createElement('div'),title=document.createElement('span'),text=document.createElement('strong');row.className='fact';title.textContent=label;text.textContent=value;row.append(title,text);return row;}));};renderFacts($('productFacts'));renderFacts($('sceneQuickFacts'));choices.forEach(button=>{const active=button.dataset.product===id;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});document.querySelectorAll('.scene-indicator b').forEach((dot,index)=>dot.classList.toggle('active',index===Number(item.number)-1));if(canvas.hidden)showPhotoFallback();}
+try{scene=createBottleScene(canvas,showPhotoFallback,id=>setProduct(id,false),syncPauseUI);if(scene)scene.setPaused(state.manualPaused);}catch(error){console.error("Scene Three.js:",error);showPhotoFallback();}
+window.addEventListener('brana-texture-error',event=>{if(event.detail===state.active)$('sceneNotice').textContent='Une étiquette photo n’a pas pu être chargée; l’image de référence reste disponible.';});
+const gate=$('ageGate');if(sessionStorage.getItem('brana-age-ok'))gate.classList.add('hidden');
+function requestProduct(id){const item=PRODUCTS[id];if(!item)return;if(item.alcoholic&&!sessionStorage.getItem('brana-age-ok')){state.queued=id;gate.classList.remove('hidden');$('ageYes').focus();return;}setProduct(id);}
+choices.forEach(button=>button.addEventListener('click',()=>requestProduct(button.dataset.product)));
+$('productPrev').addEventListener('click',()=>requestProduct(ORDER[(ORDER.indexOf(state.active)+ORDER.length-1)%ORDER.length]));
+$('productNext').addEventListener('click',()=>requestProduct(ORDER[(ORDER.indexOf(state.active)+1)%ORDER.length]));
+$('motionToggle').addEventListener('click',()=>{if(reduce.matches)return;state.manualPaused=!state.paused;scene?.setPaused(state.manualPaused);});
+$('ageYes').addEventListener('click',()=>{sessionStorage.setItem('brana-age-ok','yes');gate.classList.add('hidden');state.manualPaused=false;scene?.setPaused(false);if(state.queued){setProduct(state.queued);state.queued=null;}else $('produits').scrollIntoView({behavior:reduce.matches?'instant':'smooth',block:'start'});});
+$('ageNo').addEventListener('click',()=>{$('ageTitle').textContent='Accès non disponible';$('ageDescription').textContent='Les contenus de cette maquette sont réservés aux adultes. Vous pouvez fermer cette fenêtre.';$('ageYes').hidden=true;$('ageNo').textContent='Accès réservé aux adultes';$('ageNo').disabled=true;});
+reduce.addEventListener?.('change',updateMotionControl);updateMotionControl();setProduct('prestige',false);
