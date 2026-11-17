@@ -151,7 +151,7 @@ body.is-paused *,body.is-paused *::before,body.is-paused *::after{animation-play
 
 .scene-notice{position:absolute;z-index:6;left:22px;right:22px;top:46px;min-height:15px;text-align:center;color:#e2c690;font-size:9px;pointer-events:none}
 /* Refonte du studio produit : décor photographique et commandes explicites du carrousel. */
-.hero-visual{background:linear-gradient(180deg,rgba(8,7,6,.08) 0%,rgba(9,8,7,.02) 56%,rgba(8,7,6,.46) 100%),url("assets/studio-backdrop.jpg?v=mwjtuksg") center 65%/cover no-repeat;perspective:none;box-shadow:0 26px 70px rgba(0,0,0,.4)}
+.hero-visual{background:linear-gradient(180deg,rgba(8,7,6,.08) 0%,rgba(9,8,7,.02) 56%,rgba(8,7,6,.46) 100%),url("assets/studio-backdrop.jpg?v=mwkwluld") center 65%/cover no-repeat;perspective:none;box-shadow:0 26px 70px rgba(0,0,0,.4)}
 .hero-visual::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(9,8,7,.12),transparent 28%,transparent 72%,rgba(9,8,7,.12))}
 .hero-visual::before{z-index:7}
 .scene-halo,.scene-floor,.scene-glint,.bubble{display:none!important}
@@ -229,4 +229,16 @@ body{font-size:15px;line-height:1.65;background:#121313}body::before,.ambient{di
  .about-card{padding:28px 22px 32px}
 }
 @media(max-width:390px){.scene-caption{max-width:68%}.scene-instructions{max-width:30%;font-size:7px}.hero-visual{min-height:445px}}
+
+/* The scene stays fully visible while complete bottle groups finish loading. */
+.scene-loading{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;gap:12px;pointer-events:none}
+.scene-loading[hidden]{display:none}
+.scene-loading-orbit{width:26px;height:26px;flex:none;border:1px solid rgba(240,200,130,.22);border-top-color:#f0c882;border-right-color:rgba(240,200,130,.68);border-radius:50%;animation:scene-loading-spin 1.15s linear infinite;box-shadow:0 0 22px rgba(221,166,94,.12)}
+.scene-loading-copy{display:flex;flex-direction:column;gap:3px;padding:11px 14px;border:1px solid rgba(238,217,177,.13);background:rgba(16,14,12,.48);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#f4efe6}
+.scene-loading-copy strong{font-size:10px;font-weight:500;letter-spacing:.11em;text-transform:uppercase}
+.scene-loading-copy small{color:#aa9d89;font-size:9px;letter-spacing:.05em}
+.scene-loading-track{position:absolute;left:24%;right:24%;top:calc(50% + 42px);height:1px;overflow:hidden;background:rgba(238,217,177,.16)}
+.scene-loading-track i{display:block;width:0;height:100%;background:linear-gradient(90deg,rgba(221,166,94,.32),#f0c882);box-shadow:0 0 10px rgba(240,200,130,.6);transition:width .35s ease}
+@keyframes scene-loading-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.scene-loading-orbit{animation-duration:3s}.scene-loading-track i{transition:none}}
 

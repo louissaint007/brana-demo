@@ -7,7 +7,7 @@
   <meta name="description" content="Galerie interactive en trois dimensions des boissons Prestige, Guinness Foreign Extra Stout et Malta H.">
   <title>BRANA | Expérience produits</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=mwjtuksg">
+  <link rel="stylesheet" href="styles.css?v=mwkwluld">
 </head>
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -38,7 +38,7 @@
         <div class="hero-note"><span class="note-dot"></span><span>Les détails présentés proviennent des éléments lisibles sur les emballages.</span></div>
       </div>
 
-      <div class="hero-visual" aria-label="Galerie interactive des produits">
+      <div class="hero-visual is-loading" id="heroVisual" aria-label="Galerie interactive des produits" aria-busy="true">
         <div class="scene-topline"><span>SCÈNE 3D INTERACTIVE</span><span id="sceneCounter">01 sur 03</span></div>
         <div class="scene-halo" aria-hidden="true"></div>
         <div class="scene-floor" aria-hidden="true"></div>
@@ -48,8 +48,13 @@
         <p id="sceneNotice" class="scene-notice" aria-live="polite"></p>
         <button class="carousel-arrow carousel-prev" id="productPrev" type="button" aria-label="Produit précédent">‹</button>
         <canvas id="bottleScene" class="bottle-scene" tabindex="0" role="img" aria-label="Galerie 3D des bouteilles Prestige, Guinness Foreign Extra Stout et Malta H. Utilisez les flèches gauche et droite pour changer de produit, ou cliquez pour lancer la rotation."></canvas>
+        <div class="scene-loading" id="sceneLoading" role="status" aria-live="polite">
+          <span class="scene-loading-orbit" aria-hidden="true"></span>
+          <span class="scene-loading-copy"><strong>La scène se prépare</strong><small><span id="sceneLoadCount">00</span> / 03 bouteilles prêtes</small></span>
+          <span class="scene-loading-track" aria-hidden="true"><i id="sceneLoadMeter"></i></span>
+        </div>
         <button class="carousel-arrow carousel-next" id="productNext" type="button" aria-label="Produit suivant">›</button>
-        <div class="scene-photo-fallback" id="sceneFallback" hidden><img id="heroProductImage" src="assets/prestige-side.jpg?v=mwjtuksg" alt="Bouteille Prestige photographiée en référence"><span>Image de référence. Rotation 3D indisponible sur cet appareil.</span></div>
+        <div class="scene-photo-fallback" id="sceneFallback" hidden><img id="heroProductImage" src="assets/prestige-side.jpg?v=mwkwluld" alt="Bouteille Prestige photographiée en référence"><span>Image de référence. Rotation 3D indisponible sur cet appareil.</span></div>
         <div class="scene-caption"><span class="caption-kicker">SÉLECTION</span><span id="sceneProductName">Prestige</span><div class="scene-quickfacts" id="sceneQuickFacts" aria-live="polite"></div><a class="scene-details-link" href="#produits">Voir les caractéristiques</a></div>
         <p class="scene-instructions">Survolez pour suspendre. Touchez pour arrêter ou reprendre.</p>
         
@@ -128,6 +133,6 @@
       <p class="age-footnote">Aucune publicité destinée aux mineurs.</p>
     </div>
   </div>
-  <script type="module" src="app.js?v=mwjtuksg"></script>
+  <script type="module" src="app.js?v=mwkwluld"></script>
 </body>
 </html>
